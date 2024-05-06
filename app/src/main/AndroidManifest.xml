@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <queries>
+        <intent>
+
+            <!-- Allow TTS usage on A11+ -->
+            <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
+    </queries>
+
+    <application
+            android:name=".BaseApplication"
+            android:allowBackup="true"
+            android:enableOnBackInvokedCallback="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:requestLegacyExternalStorage="true"
+            android:roundIcon="@mipmap/ic_launcher"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity
+                android:name=".ui.loginAndRegiester.LoginRegisterActivity"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".MainActivity"
+                android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboard|keyboardHidden|navigation"
+                android:exported="true">
+            <intent-filter android:label="Read with QuickNovel">
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="*/*" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                        android:host="www.reddit.com"
+                        android:pathPrefix="/r/"
+                        android:scheme="https" />
+                <data
+                        android:host="bestlightnovel.com"
+                        android:pathPrefix="/"
+                        android:scheme="https" />
+                <data
+                        android:host="www.novelpassion.com"
+                        android:pathPrefix="/novel"
+                        android:scheme="https" />
+                <data
+                        android:host="www.royalroad.com"
+                        android:pathPrefix="/fiction"
+                        android:scheme="https" />
+                <data
+                        android:host="wuxiaworld.online"
+                        android:pathPrefix="/"
+                        android:scheme="https" />
+                <data
+                        android:host="wuxiaworld.site"
+                        android:pathPrefix="/"
+                        android:scheme="https" />
+                <data
+                        android:host="www.readlightnovel.org"
+                        android:pathPrefix="/"
+                        android:scheme="https" />
+                <data
+                        android:host="boxnovel.com"
+                        android:pathPrefix="/novel/"
+                        android:scheme="https" />
+                <data
+                        android:host="comrademao.com"
+                        android:pathPrefix="/novel/"
+                        android:scheme="https" />
+                <data
+                        android:host="www.lightnovelpub.com"
+                        android:pathPrefix="/novel/"
+                        android:scheme="https" />
+                <data
+                        android:host="www.scribblehub.com"
+                        android:pathPrefix="/series/"
+                        android:scheme="https" />
+                <data
+                        android:host="www.readanybook.com"
+                        android:pathPrefix="/ebook/"
+                        android:scheme="https" />
+                <data
+                        android:host="www.wattpad.com"
+                        android:pathPrefix="/story/"
+                        android:scheme="https" />
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".ReadActivity2"
+                android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboard|keyboardHidden|navigation"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="content" />
+                <data android:mimeType="application/epub+zip" />
+            </intent-filter>
+        </activity>
+
+        <service
+                android:name=".services.DownloadService"
+                android:enabled="true"
+                android:exported="false" />
+        <service
+                android:name=".services.TTSPauseService"
+                android:enabled="true"
+                android:exported="false" />
+
+        <provider
+                android:name="androidx.core.content.FileProvider"
+                android:authorities="${applicationId}.provider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/provider_paths" />
+        </provider>
+    </application>
+
+</manifest>

@@ -1,0 +1,12 @@
+package com.lagradost.quicknovel.ui.loginAndRegiester
+
+data class UserSign(
+    val firstName: String?,
+    val lastName: String?,
+    val email: String?,
+    val userStatus: String?,
+    val imagePath: String? = "",
+    val isFirstLogin: Boolean = true,
+) {
+    constructor() : this("", "", "", "", "")
+}
